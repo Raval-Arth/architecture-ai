@@ -26,9 +26,9 @@ export default function Dashboard() {
         <Tabs defaultValue="overview" className="space-y-4">
           <TabsList>
             <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="projects">Projects</TabsTrigger>
+            {/* <TabsTrigger value="projects">Projects</TabsTrigger>
             <TabsTrigger value="materials">Materials</TabsTrigger>
-            <TabsTrigger value="analytics">Analytics</TabsTrigger>
+            <TabsTrigger value="analytics">Analytics</TabsTrigger> */}
           </TabsList>
           <TabsContent value="overview" className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -84,25 +84,25 @@ export default function Dashboard() {
                     title="Modern Office Complex"
                     description="Commercial building with sustainable design elements"
                     progress={75}
-                    image="/placeholder.svg?height=100&width=200"
+                    image="https://i.pinimg.com/736x/4c/45/bb/4c45bb709ad7b59f4f4ad095d7e10cc4.jpg?height=100&width=200"
                   />
                   <ProjectCard
                     title="Residential Apartments"
                     description="Multi-family housing with optimized space utilization"
                     progress={45}
-                    image="/placeholder.svg?height=100&width=200"
+                    image="https://i.pinimg.com/736x/0e/18/1b/0e181bd08272dc148793f99a812872e8.jpg?height=100&width=200"
                   />
                   <ProjectCard
                     title="Community Center"
                     description="Public space with energy-efficient design"
                     progress={90}
-                    image="/placeholder.svg?height=100&width=200"
+                    image="https://i.pinimg.com/736x/e4/da/f9/e4daf946f9509d92ab7e7b557a0ce489.jpg?height=100&width=200"
                   />
                   <ProjectCard
                     title="Retail Space Renovation"
                     description="Modernization of existing commercial space"
                     progress={30}
-                    image="/placeholder.svg?height=100&width=200"
+                    image="https://i.pinimg.com/736x/6a/4d/97/6a4d97af2593b3968f0fbbc4d2536143.jpg?height=100&width=200"
                   />
                 </CardContent>
               </Card>
@@ -117,7 +117,7 @@ export default function Dashboard() {
               </Card>
             </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
-              <Card className="col-span-1">
+              <Card className="col-span-2">
                 <CardHeader>
                   <CardTitle>Cost Analysis</CardTitle>
                   <CardDescription>Comparison of traditional vs. AI-recommended materials</CardDescription>
@@ -126,7 +126,7 @@ export default function Dashboard() {
                   <CostAnalysisChart />
                 </CardContent>
               </Card>
-              <Card className="col-span-1">
+              {/* <Card className="col-span-1">
                 <CardHeader>
                   <CardTitle>Sustainability Metrics</CardTitle>
                   <CardDescription>Environmental impact of your design choices</CardDescription>
@@ -134,7 +134,7 @@ export default function Dashboard() {
                 <CardContent>
                   <SustainabilityMetrics />
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
           </TabsContent>
           <TabsContent value="projects" className="space-y-4">
@@ -175,4 +175,3 @@ export default function Dashboard() {
     </div>
   )
 }
-

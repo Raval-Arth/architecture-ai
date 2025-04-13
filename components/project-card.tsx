@@ -28,4 +28,3 @@ export default function ProjectCard({ title, description, progress, image }: Pro
     </Card>
   )
 }
-

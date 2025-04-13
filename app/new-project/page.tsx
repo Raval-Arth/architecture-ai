@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -13,10 +14,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ArrowRight, Building, Building2, Home, Landmark, Store } from "lucide-react"
 
 export default function NewProject() {
+  const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1)
-  const [projectType, setProjectType] = useState("")
+  const [projectType, setProjectType] = useState("commercial")
   const [budget, setBudget] = useState([500000])
   const [sustainabilityFocus, setSustainabilityFocus] = useState(false)
+  const [projectName, setProjectName] = useState("")
+  const [location, setLocation] = useState("")
+  const [description, setDescription] = useState("")
+  const [area, setArea] = useState("")
+  const [floors, setFloors] = useState("")
+  const [occupancy, setOccupancy] = useState("")
+  const [timeline, setTimeline] = useState("")
+  const [style, setStyle] = useState("")
+  const [designPriority, setDesignPriority] = useState("aesthetics")
+  const [materialPreferences, setMaterialPreferences] = useState("")
+  const [specialRequirements, setSpecialRequirements] = useState("")
 
   const nextStep = () => {
     setCurrentStep(currentStep + 1)
@@ -24,6 +37,11 @@ export default function NewProject() {
 
   const prevStep = () => {
     setCurrentStep(currentStep - 1)
+  }
+
+  const handleGenerateRecommendations = () => {
+    // Pass project type and sustainability focus as URL parameters
+    router.push(`/recommendations/project-123?type=${projectType}&eco=${sustainabilityFocus}`)
   }
 
   return (
@@ -66,7 +84,12 @@ export default function NewProject() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="project-name">Project Name</Label>
-              <Input id="project-name" placeholder="Enter project name" />
+              <Input
+                id="project-name"
+                placeholder="Enter project name"
+                value={projectName}
+                onChange={(e) => setProjectName(e.target.value)}
+              />
             </div>
             <div className="space-y-2">
               <Label>Project Type</Label>
@@ -115,11 +138,22 @@ export default function NewProject() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="location">Location</Label>
-              <Input id="location" placeholder="City, Country" />
+              <Input
+                id="location"
+                placeholder="City, Country"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="project-description">Project Description</Label>
-              <Textarea id="project-description" placeholder="Brief description of your project" rows={4} />
+              <Textarea
+                id="project-description"
+                placeholder="Brief description of your project"
+                rows={4}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
             </div>
           </CardContent>
           <CardFooter className="flex justify-between">
@@ -142,11 +176,17 @@ export default function NewProject() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="total-area">Total Area (sq ft/m²)</Label>
-              <Input id="total-area" type="number" placeholder="Enter total area" />
+              <Input
+                id="total-area"
+                type="number"
+                placeholder="Enter total area"
+                value={area}
+                onChange={(e) => setArea(e.target.value)}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="floors">Number of Floors</Label>
-              <Select>
+              <Select value={floors} onValueChange={setFloors}>
                 <SelectTrigger id="floors">
                   <SelectValue placeholder="Select number of floors" />
                 </SelectTrigger>
@@ -163,7 +203,13 @@ export default function NewProject() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="occupancy">Occupancy</Label>
-              <Input id="occupancy" type="number" placeholder="Expected number of occupants" />
+              <Input
+                id="occupancy"
+                type="number"
+                placeholder="Expected number of occupants"
+                value={occupancy}
+                onChange={(e) => setOccupancy(e.target.value)}
+              />
             </div>
             <div className="space-y-2">
               <Label>Budget Range ($)</Label>
@@ -178,7 +224,7 @@ export default function NewProject() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="timeline">Project Timeline</Label>
-              <Select>
+              <Select value={timeline} onValueChange={setTimeline}>
                 <SelectTrigger id="timeline">
                   <SelectValue placeholder="Select expected timeline" />
                 </SelectTrigger>
@@ -211,7 +257,7 @@ export default function NewProject() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="architectural-style">Preferred Architectural Style</Label>
-              <Select>
+              <Select value={style} onValueChange={setStyle}>
                 <SelectTrigger id="architectural-style">
                   <SelectValue placeholder="Select style" />
                 </SelectTrigger>
@@ -229,7 +275,7 @@ export default function NewProject() {
 
             <div className="space-y-2">
               <Label>Design Priorities</Label>
-              <Tabs defaultValue="aesthetics">
+              <Tabs defaultValue={designPriority} onValueChange={setDesignPriority}>
                 <TabsList className="grid grid-cols-3 w-full">
                   <TabsTrigger value="aesthetics">Aesthetics</TabsTrigger>
                   <TabsTrigger value="functionality">Functionality</TabsTrigger>
@@ -277,6 +323,8 @@ export default function NewProject() {
                 id="material-preferences"
                 placeholder="Any specific materials you prefer or want to avoid"
                 rows={3}
+                value={materialPreferences}
+                onChange={(e) => setMaterialPreferences(e.target.value)}
               />
             </div>
 
@@ -286,6 +334,8 @@ export default function NewProject() {
                 id="special-requirements"
                 placeholder="Any special features or requirements for your project"
                 rows={3}
+                value={specialRequirements}
+                onChange={(e) => setSpecialRequirements(e.target.value)}
               />
             </div>
           </CardContent>
@@ -310,12 +360,28 @@ export default function NewProject() {
             <div className="border rounded-lg p-4 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
+                  <h3 className="text-sm font-medium text-gray-500">Project Name</h3>
+                  <p>{projectName || "Not specified"}</p>
+                </div>
+                <div>
                   <h3 className="text-sm font-medium text-gray-500">Project Type</h3>
                   <p className="capitalize">{projectType || "Not specified"}</p>
                 </div>
                 <div>
+                  <h3 className="text-sm font-medium text-gray-500">Location</h3>
+                  <p>{location || "Not specified"}</p>
+                </div>
+                <div>
                   <h3 className="text-sm font-medium text-gray-500">Budget</h3>
                   <p>${budget[0].toLocaleString()}</p>
+                </div>
+                <div>
+                  <h3 className="text-sm font-medium text-gray-500">Area</h3>
+                  <p>{area ? `${area} sq ft/m²` : "Not specified"}</p>
+                </div>
+                <div>
+                  <h3 className="text-sm font-medium text-gray-500">Floors</h3>
+                  <p>{floors || "Not specified"}</p>
                 </div>
                 <div>
                   <h3 className="text-sm font-medium text-gray-500">Sustainability Focus</h3>
@@ -323,16 +389,22 @@ export default function NewProject() {
                 </div>
                 <div>
                   <h3 className="text-sm font-medium text-gray-500">Timeline</h3>
-                  <p>Not specified</p>
+                  <p>{timeline || "Not specified"}</p>
                 </div>
               </div>
               <div>
                 <h3 className="text-sm font-medium text-gray-500">Design Priorities</h3>
-                <p>Aesthetics, Functionality, Cost Efficiency</p>
+                <p className="capitalize">{designPriority}</p>
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-gray-500">Architectural Style</h3>
+                <p className="capitalize">{style || "Not specified"}</p>
               </div>
               <div>
                 <h3 className="text-sm font-medium text-gray-500">Special Requirements</h3>
-                <p className="text-gray-400 italic">None specified</p>
+                <p className={specialRequirements ? "" : "text-gray-400 italic"}>
+                  {specialRequirements || "None specified"}
+                </p>
               </div>
             </div>
 
@@ -353,11 +425,10 @@ export default function NewProject() {
             <Button variant="outline" onClick={prevStep}>
               Back
             </Button>
-            <Button>Generate Recommendations</Button>
+            <Button onClick={handleGenerateRecommendations}>Generate Recommendations</Button>
           </CardFooter>
         </Card>
       )}
     </div>
   )
 }
-

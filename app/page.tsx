@@ -14,19 +14,19 @@ export default function Home() {
           <Link href="/dashboard" className="text-sm font-medium hover:underline underline-offset-4">
             Dashboard
           </Link>
-          <Link href="/projects" className="text-sm font-medium hover:underline underline-offset-4">
+          {/* <Link href="/projects" className="text-sm font-medium hover:underline underline-offset-4">
             Projects
-          </Link>
-          <Link href="/materials" className="text-sm font-medium hover:underline underline-offset-4">
+          </Link> */}
+          {/* <Link href="/materials" className="text-sm font-medium hover:underline underline-offset-4">
             Materials
-          </Link>
+          </Link> */}
           <Link href="/about" className="text-sm font-medium hover:underline underline-offset-4">
             About
           </Link>
         </nav>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <section className="w-full py-12 md:py-12 lg:py-24 xl:py-24 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
               <div className="flex flex-col justify-center space-y-4">
@@ -48,22 +48,17 @@ export default function Home() {
                       Start New Project <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
-                  <Link href="/demo">
-                    <Button size="lg" variant="outline">
-                      View Demo
-                    </Button>
-                  </Link>
                 </div>
               </div>
               <img
-                src="/architecture-sketching.jpg?height=550&width=800"
+                src="https://i.pinimg.com/736x/38/e8/0b/38e80b8cdff31ba7f28c86e0f3cc2c27.jpg?height=550&width=800"
                 alt="AI-generated architectural design visualization"
                 className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
               />
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-white dark:bg-gray-950">
+        {/* <section className="w-full py-12 md:py-24 lg:py-32 bg-white dark:bg-gray-950">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -164,20 +159,19 @@ export default function Home() {
               </Card>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full border-t px-4 md:px-6">
         <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 ArchitectAI. All rights reserved.</p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+        {/* <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link href="#" className="text-xs hover:underline underline-offset-4">
             Terms of Service
           </Link>
           <Link href="#" className="text-xs hover:underline underline-offset-4">
             Privacy
           </Link>
-        </nav>
+        </nav> */}
       </footer>
     </div>
   )
 }
-
